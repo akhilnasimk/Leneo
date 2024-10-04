@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
   return MaterialApp(
   debugShowCheckedModeBanner: false,
   home: const SplashScreen(),
+    routes: {
+
+    },
   );
   }
 }
@@ -36,7 +39,8 @@ Timer(const Duration(seconds:
 5), () {
 Navigator.pushReplacement(
 context,
-MaterialPageRoute(builder: (context) => Login()),
+MaterialPageRoute(builder: (context) =>  Login()
+),
 );
 });
 }
@@ -56,4 +60,5 @@ return
 );
 }
 }
-    
+
+
