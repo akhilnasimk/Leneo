@@ -1,18 +1,17 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return
-    MaterialApp(
+    return MaterialApp(
       title: 'Lea\'neo',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Lea\'neo',style: TextStyle(fontFamily: 'Roboto', fontSize: 24),),
+          title: Text('Lea\'neo', style: TextStyle(fontFamily: 'Roboto', fontSize: 24)),
           actions: [
             IconButton(
               icon: Icon(Icons.search),
@@ -38,7 +37,7 @@ class Home extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    _launchURL('https://notebooklm.google');
+
                   },
                   child: Text('Groups'),
                 ),
@@ -71,8 +70,6 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
 
 class ChatList extends StatelessWidget {
   @override
@@ -151,11 +148,11 @@ class ChatItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        // Navigate to TeacherDetailsPage with the teacher's name
+        // Navigate to ChatScreen with the teacher's name
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TeacherDetailsPage(teacherName: name),
+            builder: (context) => ChatScreen(teacherName: name),
           ),
         );
       },
@@ -163,20 +160,54 @@ class ChatItem extends StatelessWidget {
   }
 }
 
-class TeacherDetailsPage extends StatelessWidget {
+class ChatScreen extends StatelessWidget {
   final String teacherName;
 
-  TeacherDetailsPage({required this.teacherName});
+  ChatScreen({required this.teacherName});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(teacherName),
-      ),
-      body: Center(
-        child: Text('Teacher Details for $teacherName'),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text(teacherName,textAlign: TextAlign.right,),backgroundColor: Colors.blue,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Consumer(
+                builder: (context, viewModel, child) {
+                  return ListView.builder(
+
+                    itemBuilder: (context, index) {
+                    },
+                  );
+                },
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+
+                      decoration: InputDecoration(
+                        hintText: 'Type a message...',
+                      ),
+                      onChanged: (text) {
+
+                      },
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () {
+
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
 }
